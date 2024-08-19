@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 | Crash Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 로그인 페이지 스타일 */
+        #login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .login-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .login-form label {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .login-form input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            background: #00bcd4;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background: #0097a7;
+        }
+
+        .login-form p {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .login-form p a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        .login-form p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Crash Games</div>
+            <nav>
+                <a href="index.html">홈</a>
+                <a href="games.html">게임 목록</a>
+                <a href="contact.html">연락처</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">블로그</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="services.html">서비스</a>
+                <a href="profile.html">내 프로필</a>
+                <a href="login.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="login">
+            <div class="login-container">
+                <h1>로그인</h1>
+                <form class="login-form">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+
+                    <button type="button" onclick="login()">로그인</button>
+
+                    <p>계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crash Games Company. 모든 권리 보유.</p>
+        </div>
+    </footer>
+
+    <script>
+        function login() {
+            // 입력 필드 값 가져오기
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // 로컬 스토리지에서 사용자 데이터 가져오기
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            // 로그인 검증
+            if (user && user.email === email && user.password === password) {
+                // 로그인 성공 처리
+                alert('로그인 성공!');
+                // 로그인 후 이동할 페이지로 리디렉션 (예: 프로필 페이지)
+                window.location.href = 'profile.html';
+            } else {
+                // 로그인 실패 처리
+                alert('이메일 또는 비밀번호가 잘못되었습니다.');
+            }
+        }
+    </script>
+</body>
+</html>

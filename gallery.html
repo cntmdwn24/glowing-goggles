@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리 | Crash Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* 갤러리 섹션 스타일 */
+#gallery {
+    padding: 60px 20px;
+    background: #f4f4f4;
+}
+
+#gallery h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px; /* 일정한 높이 유지 */
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 90%;
+    max-height: 80%;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+    color: #333;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #00bcd4;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Crash Games</div>
+            <nav>
+                <a href="index.html">홈</a>
+                <a href="games.html">게임 목록</a>
+                <a href="contact.html">연락처</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">블로그</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="services.html">서비스</a>
+                <a href="profile.html">내 프로필</a>
+                <a href="login.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="gallery">
+            <h1>팬아트 갤러리</h1>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="image1.jpg" alt="팬아트 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="image2.jpg" alt="팬아트 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="image3.jpg" alt="팬아트 3">
+                </div>
+                <!-- 추가 팬아트 항목은 여기에 추가 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 모달 -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="모달 이미지">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crash Games Company. 모든 권리 보유.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모달 기능
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                modalImg.src = img.src;
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

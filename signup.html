@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 | Crash Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 회원가입 페이지 스타일 */
+        #signup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .signup-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .signup-form label {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .signup-form input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .signup-form button {
+            background: #00bcd4;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background: #0097a7;
+        }
+
+        .signup-form p {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .signup-form p a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        .signup-form p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Crash Games</div>
+            <nav>
+                <a href="index.html">홈</a>
+                <a href="games.html">게임 목록</a>
+                <a href="contact.html">연락처</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">블로그</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="services.html">서비스</a>
+                <a href="profile.html">내 프로필</a>
+                <a href="login.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="signup">
+            <div class="signup-container">
+                <h1>회원가입</h1>
+                <form class="signup-form">
+                    <label for="username">사용자 이름</label>
+                    <input type="text" id="username" name="username" placeholder="사용자 이름을 입력하세요" required>
+
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+
+                    <label for="confirm-password">비밀번호 확인</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 다시 입력하세요" required>
+
+                    <button type="button" onclick="register()">가입하기</button>
+
+                    <p>이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crash Games Company. 모든 권리 보유.</p>
+        </div>
+    </footer>
+
+    <script>
+        function register() {
+            // 입력 필드 값 가져오기
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // 입력값 검증
+            if (password !== confirmPassword) {
+                alert('비밀번호가 일치하지 않습니다.');
+                return;
+            }
+
+            // 사용자 데이터 저장
+            const user = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            // localStorage에 사용자 데이터 저장
+            localStorage.setItem('user', JSON.stringify(user));
+
+            // 성공 메시지
+            alert('회원가입이 완료되었습니다!');
+            
+            // 가입 후 로그인 페이지로 리디렉션
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

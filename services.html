@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서비스 | Crash Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* 서비스 섹션 스타일 */
+#services {
+    padding: 60px 20px;
+    background: #f4f4f4;
+}
+
+#services h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.service-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.service-item h2 {
+    font-size: 1.5em;
+    color: #00bcd4;
+    margin-bottom: 15px;
+}
+
+.service-item p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background: #00bcd4;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.service-button:hover {
+    background: #0097a7;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Crash Games</div>
+            <nav>
+                <a href="index.html">홈</a>
+                <a href="games.html">게임 목록</a>
+                <a href="contact.html">연락처</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">블로그</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="services.html">서비스</a>
+                <a href="profile.html">내 프로필</a>
+                <a href="login.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="services">
+            <h1>우리의 서비스</h1>
+            <div class="services-container">
+                <div class="service-item">
+                    <img src="service1-icon.png" alt="게임 개발">
+                    <h2>게임 개발</h2>
+                    <p>최고의 게임 경험을 제공하기 위해 최신 기술로 게임을 개발합니다.</p>
+                    <a href="#" class="service-button">자세히 보기</a>
+                </div>
+                <div class="service-item">
+                    <img src="service2-icon.png" alt="유저 지원">
+                    <h2>유저 지원</h2>
+                    <p>게임 사용 중 발생할 수 있는 문제를 신속하게 해결해 드립니다.</p>
+                    <a href="#" class="service-button">자세히 보기</a>
+                </div>
+                <div class="service-item">
+                    <img src="service3-icon.png" alt="커뮤니티 관리">
+                    <h2>커뮤니티 관리</h2>
+                    <p>활발한 커뮤니티를 유지하고 유저들과의 소통을 원활하게 합니다.</p>
+                    <a href="#" class="service-button">자세히 보기</a>
+                </div>
+                <!-- 추가 서비스 항목은 여기에 추가 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crash Games Company. 모든 권리 보유.</p>
+        </div>
+    </footer>
+</body>
+</html>

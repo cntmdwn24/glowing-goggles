@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연락처 | Crash Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* 연락처 섹션 스타일 */
+#contact {
+    padding: 60px 20px;
+    background: #f4f4f4;
+}
+
+#contact h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 60px; /* 아래쪽 여백을 늘려서 텍스트를 더 아래로 */
+    color: #333;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-info, .contact-form-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* 너비 조정 */
+    box-sizing: border-box;
+}
+
+.contact-info {
+    flex: 1 1 calc(50% - 20px); /* 두 개씩 배치 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.contact-item {
+    margin-bottom: 40px; /* 위아래 여백을 늘림 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.contact-item h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #00bcd4;
+}
+
+.contact-item p {
+    margin: 15px 0; /* 위아래 여백을 조정 */
+    font-size: 1em;
+}
+
+.contact-item a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.contact-form-container {
+    flex: 1 1 calc(50% - 20px); /* 두 개씩 배치 */
+}
+
+.contact-form-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 30px; /* 아래쪽 여백을 늘려서 텍스트를 더 아래로 */
+    color: #333;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px; /* 아래쪽 여백을 늘림 */
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%; /* 부모 요소의 너비에 맞게 설정 */
+    padding: 10px;
+    margin-bottom: 15px; /* 아래쪽 여백을 늘림 */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 조정 */
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px; /* 최소 높이 설정 */
+}
+
+.contact-form button {
+    background: #00bcd4;
+    color: #fff;
+    padding: 12px 20px; /* 버튼 패딩을 약간 늘림 */
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+
+.contact-form button:hover {
+    background: #0097a7;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Crash Games</div>
+            <nav>
+                <a href="index.html">홈</a>
+                <a href="games.html">게임 목록</a>
+                <a href="contact.html">연락처</a>
+                <a href="faq.html">FAQ</a>
+                <a href="blog.html">블로그</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="services.html">서비스</a>
+                <a href="profile.html">내 프로필</a>
+                <a href="login.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="contact">
+            <div class="container">
+                <h2>연락처</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>이메일</h3>
+                            <p><a href="mailto:contact@crashgames.com">contact@crashgames.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <h3>문의하기</h3>
+                        <form action="https://formspree.io/f/xblraogy" method="POST" class="contact-form">
+                            <label for="name">이름</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="email">이메일</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="message">메시지</label>
+                            <textarea id="message" name="message" required></textarea>
+
+                            <button type="submit">보내기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Crash Games Company. 모든 권리 보유.</p>
+        </div>
+    </footer>
+</body>
+</html>
