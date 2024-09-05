@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.navbar {
+    background-color: #ff0000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.search-bar {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    gap: 20px;
+}
+
+.video-player {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.styled-video {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.video-info h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.audio-playlist {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: fit-content;
+}
+
+.audio-playlist h3 {
+    margin-top: 0;
+}
+
+.audio-playlist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.audio-playlist li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.styled-audio {
+    width: 100%;
+}
+
+#fileInput, #addMusicButton {
+    margin-top: 15px;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+}
+
+#addMusicButton {
+    background-color: #ff0000;
+    color: white;
+    cursor: pointer;
+}
+
+.show-video {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.controls button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}

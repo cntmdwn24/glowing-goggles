@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player Site</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1 id="siteTitle">My Music Player</h1>
+        <input type="text" placeholder="Search music..." class="search-bar">
+    </header>
+
+    <div class="main-content">
+        <div class="video-player">
+            <video id="mainVideo" class="styled-video" muted autoplay loop src="/Image/215407_small.mp4" controls></video>
+            <div class="video-info">
+                <h2 id="musicTitle">Music Title - Artist Name</h2>
+                <p id="musicDescription">Description or any additional info about the video or music...</p>
+            </div>
+        </div>
+
+        <div class="audio-playlist">
+            <h3>Playlist</h3>
+            <ul id="playlist">
+                <!-- 기존 플레이리스트 항목 -->
+                <li>
+                    <audio class="styled-audio" controls src="/Image/asdf.mp3"></audio>
+                    <button class="show-video" data-title="Track 1 - Artist" data-description="Description for Track 1">Show Video</button>
+                </li>
+            </ul>
+            <!-- 음악 추가를 위한 파일 입력 -->
+            <input type="file" id="fileInput" accept="mp4/*">
+            <button id="addMusicButton">Add Music</button>
+            
+            <!-- 루프 모드 설정 버튼 -->
+            <div class="controls">
+                <button id="loopPlaylist">Loop Playlist</button>
+                <button id="loopTrack">Repeat Track</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
