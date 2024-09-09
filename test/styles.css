@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#siteTitle {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+
+#searchInput {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#searchButton {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#playerContainer {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    margin-bottom: 20px;
+}
+
+#resultsContainer {
+    width: 100%;
+    max-width: 560px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.result-item img {
+    width: 120px;
+    height: 90px;
+    margin-right: 10px;
+}
+
+.add-to-playlist-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.playlist-container {
+    width: 100%;
+    max-width: 560px;
+    margin-top: 20px;
+}
+
+#playlist {
+    list-style: none;
+    padding: 0;
+}
+
+#playlist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.track-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.track-info {
+    margin-top: 20px;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.custom-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}

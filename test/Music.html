@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" id="siteTitle">My Music Player</a>
+        <input type="text" id="searchInput" placeholder="Search music...">
+        <button id="searchButton">Search</button>
+    </header>
+    
+    <main class="main-content">
+        <div id="playerContainer"></div>
+        <div id="resultsContainer"></div>
+        <div class="playlist-container">
+            <ul id="playlist"></ul>
+        </div>
+        <div class="controls">
+            <button id="prevTrack">Previous</button>
+            <button id="playPause">Play/Pause</button>
+            <button id="nextTrack">Next</button>
+            <button id="loopPlaylist">Loop Playlist</button>
+            <button id="loopTrack">Repeat Track</button>
+        </div>
+        <div class="track-info">
+            <h2 id="trackTitle">Track Title</h2>
+            <p id="trackArtist">Artist</p>
+        </div>
+    </main>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>

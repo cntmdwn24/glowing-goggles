@@ -1,95 +1,157 @@
+let player;
+const apiKey = 'YOUR_YOUTUBE_API_KEY'; // 자신의 API 키로 교체하세요
+const searchButton = document.getElementById('searchButton');
+const searchInput = document.getElementById('searchInput');
+const resultsContainer = document.getElementById('resultsContainer');
+const playlist = document.getElementById('playlist');
+const trackTitle = document.getElementById('trackTitle');
+const trackArtist = document.getElementById('trackArtist');
+const playerContainer = document.getElementById('playerContainer');
 let currentTrackIndex = 0;
-let loopMode = 'none';  // 'none', 'track', 'playlist'
+let loopMode = 'none'; // 'none', 'track', 'playlist'
 
-// 음악 추가 기능
-document.getElementById('addMusicButton').addEventListener('click', function() {
-    const fileInput = document.getElementById('fileInput');
-    const playlist = document.getElementById('playlist');
-
-    if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const url = URL.createObjectURL(file);
-        
-        const listItem = document.createElement('li');
-        const audioElement = document.createElement('audio');
-        audioElement.controls = true;
-        audioElement.src = url;
-        audioElement.className = 'styled-audio';
-
-        const showVideoButton = document.createElement('button');
-        showVideoButton.textContent = 'Show Video';
-        showVideoButton.className = 'show-video';
-        showVideoButton.setAttribute('data-title', file.name);
-        showVideoButton.setAttribute('data-description', `Description for ${file.name}`);
-
-        showVideoButton.addEventListener('click', function() {
-            updateMainContent(url, file.name, `Description for ${file.name}`);
-            currentTrackIndex = Array.from(playlist.children).indexOf(listItem);
-        });
-
-        listItem.appendChild(audioElement);
-        listItem.appendChild(showVideoButton);
-        playlist.appendChild(listItem);
-
-        fileInput.value = '';
-    } else {
-        alert('ㅎㅇ.');
+searchButton.addEventListener('click', () => {
+    const query = searchInput.value;
+    if (query) {
+        searchYouTube(query);
     }
 });
 
-function updateMainContent(videoUrl, title, description) {
-    const mainVideo = document.getElementById('mainVideo');
-    const musicTitle = document.getElementById('musicTitle');
-    const musicDescription = document.getElementById('musicDescription');
-
-    mainVideo.src = videoUrl;
-    mainVideo.play();
-
-    musicTitle.textContent = title;
-    musicDescription.textContent = description;
-
-    mainVideo.onended = function() {
-        playNextTrack();
-    };
+function searchYouTube(query) {
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=${encodeURIComponent(query)}&key=${apiKey}`;
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            displayResults(data.items);
+        })
+        .catch(error => console.error('Error fetching YouTube data:', error));
 }
 
-// 다음 트랙 재생 함수
-function playNextTrack() {
-    const playlist = document.getElementById('playlist');
-    const tracks = playlist.getElementsByTagName('li');
+function displayResults(results) {
+    resultsContainer.innerHTML = '';
+    results.forEach(result => {
+        const { id, snippet } = result;
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
 
+        const thumbnail = document.createElement('img');
+        thumbnail.src = snippet.thumbnails.medium.url;
+        thumbnail.alt = snippet.title;
+
+        const title = document.createElement('h4');
+        title.innerText = snippet.title;
+
+        const addButton = document.createElement('button');
+        addButton.className = 'add-to-playlist-button';
+        addButton.innerText = 'Add to Playlist';
+        addButton.onclick = () => addToPlaylist(id.videoId, snippet.thumbnails.medium.url, snippet.title, snippet.channelTitle);
+
+        resultItem.appendChild(thumbnail);
+        resultItem.appendChild(title);
+        resultItem.appendChild(addButton);
+        resultsContainer.appendChild(resultItem);
+    });
+}
+
+function addToPlaylist(videoId, imageUrl, title, artist) {
+    const playlistItem = document.createElement('li');
+    playlistItem.innerHTML = `
+        <img src="${imageUrl}" alt="${title}" class="track-image">
+        <div class="track-info">
+            <h2>${title}</h2>
+            <p>${artist}</p>
+        </div>
+    `;
+
+    playlistItem.onclick = () => playTrack(videoId, imageUrl, title, artist);
+    playlist.appendChild(playlistItem);
+}
+
+function playTrack(videoId, imageUrl, title, artist) {
+    if (!player) {
+        player = new YT.Player('playerContainer', {
+            height: '315',
+            width: '560',
+            videoId: videoId,
+            playerVars: { 'autoplay': 1, 'controls': 1 },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    } else {
+        player.loadVideoById(videoId);
+    }
+
+    trackTitle.innerText = title;
+    trackArtist.innerText = artist;
+}
+
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        playNextTrack();
+    }
+}
+
+function playNextTrack() {
+    const tracks = playlist.getElementsByTagName('li');
     if (loopMode === 'track') {
-        // 같은 트랙 반복
-        const currentTrackButton = tracks[currentTrackIndex].querySelector('.show-video');
+        const currentTrackButton = tracks[currentTrackIndex];
         currentTrackButton.click();
     } else {
         currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-
-        if (currentTrackIndex === 0 && loopMode === 'none') return;  // 루프 모드가 아니면 중지
-
-        const nextTrackButton = tracks[currentTrackIndex].querySelector('.show-video');
+        if (currentTrackIndex === 0 && loopMode === 'none') return;
+        const nextTrackButton = tracks[currentTrackIndex];
         nextTrackButton.click();
     }
 }
 
-// 루프 모드 버튼 이벤트 리스너 추가
-document.getElementById('loopPlaylist').addEventListener('click', function() {
+// Additional controls for play, pause, next, and previous
+document.getElementById('prevTrack').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex - 1 + playlist.children.length) % playlist.children.length;
+    playNextTrack();
+});
+
+document.getElementById('playPause').addEventListener('click', () => {
+    if (player) {
+        if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+        } else {
+            player.playVideo();
+        }
+    }
+});
+
+document.getElementById('nextTrack').addEventListener('click', () => {
+    playNextTrack();
+});
+
+document.getElementById('loopPlaylist').addEventListener('click', () => {
     loopMode = 'playlist';
-    alert('Loop Playlist mode enabled');
+    showCustomMessage('Loop Playlist mode enabled');
 });
 
-document.getElementById('loopTrack').addEventListener('click', function() {
+document.getElementById('loopTrack').addEventListener('click', () => {
     loopMode = 'track';
-    alert('Repeat Track mode enabled');
+    showCustomMessage('Repeat Track mode enabled');
 });
 
-// 기존 음악 목록의 버튼에 이벤트 리스너 추가
-document.querySelectorAll('.show-video').forEach((button, index) => {
-    button.addEventListener('click', function() {
-        const title = this.getAttribute('data-title');
-        const description = this.getAttribute('data-description');
-        const audioSrc = this.previousElementSibling.src;
-        currentTrackIndex = index;
-        updateMainContent(audioSrc, title, description);
-    });
-});
+// Create a callback function for when the API is ready
+function onYouTubeIframeAPIReady() {
+    console.log('YouTube IFrame API is ready');
+}
+
+function showCustomMessage(message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.className = 'custom-message';
+    messageContainer.innerText = message;
+    document.body.appendChild(messageContainer);
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, 3000);
+}
